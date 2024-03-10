@@ -1,19 +1,16 @@
 import './App.css'
 
 import {Route, Routes} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import StartPage from "./pages/StartPage";
 
 const App = () => {
 
     return (
         <Routes>
-            <Route path={"/"} element={<div>home</div>}/>
-            <Route path={"/test"} element={<div>test</div>}/>
+            <Route path={"/"} element={<HomePage/>}/>
+            <Route path={"/start"} element={<StartPage/>}/>
         </Routes>
-        // <div>
-        //     <div>Figma Test</div>
-        //     <button onClick={() => figmaTokenCallback()}>Call back</button>
-        //     <button onClick={() => getFigmaToken()}>Get Token</button>
-        // </div>
     )
 }
 
