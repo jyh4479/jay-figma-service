@@ -1,4 +1,6 @@
 import {useSearchParams} from "react-router-dom";
+import styled from "styled-components";
+import {Card} from "antd";
 
 const FigmaCodePage = () => {
 
@@ -8,8 +10,12 @@ const FigmaCodePage = () => {
     console.log(params.get('state'));
 
     return (
-        <div>figma code</div>
+        <StyledCard type={"inner"} title={"Create Figma URL"}>figma code</StyledCard>
     )
 }
 
 export default FigmaCodePage;
+
+const StyledCard = styled(Card)`
+  width: 600px;
+`;
