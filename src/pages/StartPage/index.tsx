@@ -22,9 +22,18 @@ const SelectBefore = (props) => {
 
 const StartPage = () => {
 
-    const {clientId: storeClientId, setClientId: setStoreClientId, scope: storeScope} = userFigmaInfoStore();
+    const {
+        clientId: storeClientId,
+        setClientId: setStoreClientId,
+        clientSecret: storeClientSecret,
+        callbackUri,
+        setCallbackUri,
+        setClientSecret: setStoreClientSecret,
+        scope: storeScope
+    } = userFigmaInfoStore();
 
     const [clientId, onClientIdChange] = useInputState(storeClientId);
+    const [clientSecret, onClientSecretChange] = useInputState(storeClientSecret);
     const [redirectUriPrefix, onPrefixChange] = useSelectState('http://');
     const [redirectUri, onRedirectUriChange] = useInputState('');
     const [scope, onScopeChange] = useInputState(storeScope);
@@ -39,6 +48,8 @@ const StartPage = () => {
 
     const onCreateUrl = () => {
         setStoreClientId(clientId);
+        setStoreClientSecret(clientSecret);
+        setCallbackUri(`${redirectUriPrefix}${redirectUri}`);
     }
 
     return (
@@ -58,6 +69,13 @@ const StartPage = () => {
                     rules={[{required: true, message: ''}]}
                 >
                     <Input defaultValue={clientId} value={clientId} onChange={onClientIdChange}/>
+                </Form.Item>
+                <Form.Item
+                    label={"Client Secret"}
+                    name={"clientSecret"}
+                    rules={[{required: true, message: ''}]}
+                >
+                    <Input defaultValue={clientSecret} value={clientSecret} onChange={onClientSecretChange}/>
                 </Form.Item>
                 <Form.Item
                     label={"Redirect URI"}
